@@ -2,9 +2,6 @@ WIDTH = 1000
 HEIGHT = 570
 
 class Ball(ZRect): pass
-class Paddle(ZRect): pass
-class LPaddle(ZRect): pass
-class RPaddle(ZRect): pass
 class Brick(ZRect): pass
 
 import time
@@ -16,26 +13,16 @@ ball_image = Actor('ball')
 
 music.play("wild wolf")
 
-#ball_image = Ball(WIDTH / 4, HEIGHT / 4, 20, 20)
-#ball_image.colour = "green"
 ball_image.direction = 1, 1
 ball_image.speed = 8
 
 
 BAT_W = 150
 BAT_H = 18
-#paddle_image = Paddle(WIDTH / 2, HEIGHT - BAT_H, BAT_W, BAT_H)
-#paddle_image.colour = "orange"
 
-#lpaddle_image = LPaddle(0, HEIGHT / 2, BAT_H, BAT_W)
-#lpaddle_image.colour = "blue"
-
-#rpaddle_image = RPaddle(WIDTH - BAT_H, HEIGHT / 2, BAT_H, BAT_W)
-#rpaddle_image.colour = "blue"
-
-paddle_image = WIDTH / 2, HEIGHT - BAT_H
-lpaddle_image = 0, HEIGHT / 2
-rpaddle_image = WIDTH - BAT_H, HEIGHT / 2
+paddle_image.pos = WIDTH / 2, HEIGHT - BAT_H
+lpaddle_image.pos = 0, HEIGHT / 2
+rpaddle_image.pos = WIDTH - BAT_H, HEIGHT / 2
 
 Num_Brick = 50
 Brick_W = WIDTH / 10
@@ -52,10 +39,6 @@ for i in range(Num_Brick):
 
 def draw():
     screen.clear()
-    #screen.draw.filled_rect(ball_image, ball_image.colour)
-    #screen.draw.filled_rect(paddle_image, paddle_image.colour)
-    #screen.draw.filled_rect(lpaddle_image,lpaddle_image.colour)
-    #screen.draw.filled_rect(rpaddle_image,rpaddle_image.colour)
 
     paddle_image.draw()
     lpaddle_image.draw()
@@ -71,10 +54,6 @@ def on_mouse_move(pos):
     paddle_image.x = x
     lpaddle_image.y = y
     rpaddle_image.y = y
-
-    #paddle_image.pos = paddle_image.centerx, paddle_image.centery - 2
-    #lpaddle_image.pos = lpaddle_image.centerx + 2, lpaddle_image.centery
-    #rpaddle_image.pos = rpaddle_image.centerx - 2, rpaddle_image.centery
 
 def update():
     dx, dy = ball_image.direction
