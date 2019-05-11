@@ -67,9 +67,10 @@ def draw():
 
 def on_mouse_move(pos):
     x, y = pos
-    paddle_image.centerx = x
-    lpaddle_image.centery = y
-    rpaddle_image.centery = y
+    print(repr(paddle_image))
+    paddle_image.x = x
+    lpaddle_image.y = y
+    rpaddle_image.y = y
 
     #paddle_image.pos = paddle_image.centerx, paddle_image.centery - 2
     #lpaddle_image.pos = lpaddle_image.centerx + 2, lpaddle_image.centery
