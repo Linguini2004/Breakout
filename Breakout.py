@@ -21,8 +21,8 @@ BAT_W = 150
 BAT_H = 18
 
 paddle_image.pos = WIDTH / 2, HEIGHT - BAT_H
-lpaddle_image.pos = 0, HEIGHT / 2
-rpaddle_image.pos = WIDTH - BAT_H, HEIGHT / 2
+lpaddle_image.pos = BAT_H / 2, HEIGHT / 2
+rpaddle_image.pos = WIDTH - (BAT_H / 2), HEIGHT / 2
 
 Num_Brick = 50
 Brick_W = WIDTH / 10
@@ -43,10 +43,10 @@ def draw():
     paddle_image.draw()
     lpaddle_image.draw()
     rpaddle_image.draw()
-    ball_image.draw()
+    #ball_image.draw()
 
-    for brick in bricks:
-        screen.draw.filled_rect(brick, brick.colour)
+    #for brick in bricks:
+    #    screen.draw.filled_rect(brick, brick.colour)
 
 def on_mouse_move(pos):
     x, y = pos
