@@ -21,7 +21,7 @@ ball_image.speed = 6
 BAT_W = 150
 BAT_H = 18
 
-paddle_image.pos = WIDTH / 2, HEIGHT - BAT_H
+paddle_image.pos = WIDTH / 2, HEIGHT - (BAT_H / 2)
 lpaddle_image.pos = BAT_H / 2, HEIGHT / 2
 rpaddle_image.pos = WIDTH - (BAT_H / 2), HEIGHT / 2
 
@@ -46,8 +46,8 @@ def draw():
     rpaddle_image.draw()
     ball_image.draw()
 
-    #for brick in bricks:
-    #    screen.draw.filled_rect(brick, brick.colour)
+    for brick in bricks:
+        screen.draw.filled_rect(brick, brick.colour)
 
 def on_mouse_move(pos):
     x, y = pos
@@ -59,8 +59,6 @@ def update():
     dx, dy = ball_image.direction
     ball_image.move_ip(ball_image.speed * dx, ball_image.speed * dy)
 
-    print(ball_image._rect)
-    print(paddle_image._rect)
     if ball_image.colliderect(paddle_image):
         sounds.bounce.play()
         ball_image.direction = dx, -dy
@@ -75,36 +73,36 @@ def update():
         print("3")
 
 
-    # to_kill = ball_image.collidelist(bricks)
-#     if to_kill >= 0:
-#         sounds.laser.play()
-#         bricks.pop(to_kill)
-#         ball_image.direction = dx, -dy
+    to_kill = ball_image.collidelist(bricks)
+    if to_kill >= 0:
+        sounds.laser.play()
+        bricks.pop(to_kill)
+        ball_image.direction = dx, -dy
 
-#     if ball_image.right >= WIDTH or ball_image.left <= 0:
-#         ball_image.direction = -dx, dy
+    if ball_image.right >= WIDTH or ball_image.left <= 0:
+        ball_image.direction = -dx, dy
 
-#     if ball_image.bottom >= HEIGHT or ball_image.top <= 0:
-#         ball_image.direction = dx, -dy
+    if ball_image.bottom >= HEIGHT or ball_image.top <= 0:
+        ball_image.direction = dx, -dy
 
-#     if ball_image.bottom >= HEIGHT:
-#         sounds.game_over.play()
-#         time.sleep(2.5)
-#         exit()
-#     if ball_image.left <= 0:
-#         sounds.game_over.play()
-#         time.sleep(2.5)
-#         exit()
-#     if ball_image.right >= WIDTH:
-#         sounds.game_over.play()
-#         time.sleep(2.5)
-#         exit()
+    if ball_image.bottom >= HEIGHT:
+        sounds.game_over.play()
+        time.sleep(2.5)
+        exit()
+    if ball_image.left <= 0:
+        sounds.game_over.play()
+        time.sleep(2.5)
+        exit()
+    if ball_image.right >= WIDTH:
+        sounds.game_over.play()
+        time.sleep(2.5)
+        exit()
 
-#     if ball_image.top <= 0:
-#         ball_image.direction = dx, -dy
+    if ball_image.top <= 0:
+        ball_image.direction = dx, -dy
 
 
-#     if not bricks:
-#         sounds.victory.play()
-#         time.sleep(2)
-#         exit()
+    if not bricks:
+        sounds.victory.play()
+        time.sleep(2)
+        exit()
