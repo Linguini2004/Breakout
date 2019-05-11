@@ -15,7 +15,7 @@ music.play("wild wolf")
 
 ball_image.pos = WIDTH / 2, HEIGHT / 2
 ball_image.direction = 1, 1
-ball_image.speed = 1
+ball_image.speed = 6
 
 
 BAT_W = 150
@@ -65,14 +65,14 @@ def update():
         sounds.bounce.play()
         ball_image.direction = dx, -dy
         print("1")
-    # if ball_image.colliderect(lpaddle_image):
-#         sounds.bounce.play()
-#         ball_image.direction = -dx, dy
-#         print("2")
-#     if ball_image.colliderect(rpaddle_image):
-#         sounds.bounce.play()
-#         ball_image.direction = -dx, dy
-#         print("3")
+    if ball_image.colliderect(lpaddle_image):
+        sounds.bounce.play()
+        ball_image.direction = -dx, dy
+        print("2")
+    if ball_image.colliderect(rpaddle_image):
+        sounds.bounce.play()
+        ball_image.direction = -dx, dy
+        print("3")
 
 
     # to_kill = ball_image.collidelist(bricks)
