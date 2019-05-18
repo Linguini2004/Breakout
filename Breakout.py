@@ -45,14 +45,15 @@ bricks = []
 #     bricks.append(brick)
 #    print(brick._rect)
 
-for n_row in range(2):
-    for n_column in range(6):
+N_ROWS = 2
+N_COLUMNS = 6
+for n_row in range(N_ROWS):
+    for n_column in range(N_COLUMNS):
         x = n_column * Brick_W
         y = n_row * Brick_H
-        i = x + (y * 6)
-        print("Row: %s, Col: %s, X: %s, H: %s" % (n_row, n_column, x, y))
+        i = n_column + (n_row * N_COLUMNS)
         brick_image = BRICK_IMAGES[i % len(BRICK_IMAGES)]
-        brick = Actor(brick_image, (x, y))
+        brick = Actor(brick_image, (x, y), anchor=("left", "top"))
         bricks.append(brick)
 
 def draw():
