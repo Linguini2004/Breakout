@@ -1,4 +1,4 @@
-WIDTH = 1000
+WIDTH = 1062
 HEIGHT = 570
 
 class Ball(ZRect): pass
@@ -25,18 +25,35 @@ paddle_image.pos = WIDTH / 2, HEIGHT - (BAT_H / 2)
 lpaddle_image.pos = BAT_H / 2, HEIGHT / 2
 rpaddle_image.pos = WIDTH - (BAT_H / 2), HEIGHT / 2
 
-Num_Brick = 50
-Brick_W = WIDTH / 10
-Brick_H = Brick_W / 4
-BRICK_COLOURS = ["purple", "lightgreen", "lightblue", "orange"]
+Num_Brick = 6
+b_in_row = 6
+
+Brick_W = 177
+Brick_H = 52
+BRICK_IMAGES = ["blue_brick", "green_brick", "orange_brick", "purple_brick"]
 
 bricks = []
-for i in range(Num_Brick):
-    row = (i // 10) + 1
-    v1 = row - 1
-    brick = Brick((i - (v1 * 10)) * Brick_W, (row * Brick_H) - Brick_H, Brick_W, Brick_H)
-    brick.colour = BRICK_COLOURS[i % len(BRICK_COLOURS)]
-    bricks.append(brick)
+# for i in range(Num_Brick):
+#     row = (i // b_in_row) + 1
+#     v1 = row - 1
+#     brick_image = BRICK_IMAGES[i % len(BRICK_IMAGES)]
+#     x = i - (v1 * b_in_row) * Brick_W
+#     print("x:", x)
+#     y = (row * Brick_H) - Brick_H
+#     brick = Actor(brick_image, (x, y))
+#     brick = Brick((i - (v1 * 10)) * Brick_W, (row * Brick_H) - Brick_H, Brick_W, Brick_H)
+#     bricks.append(brick)
+#    print(brick._rect)
+
+for n_row in range(2):
+    for n_column in range(6):
+        x = n_column * Brick_W
+        y = n_row * Brick_H
+        i = x + (y * 6)
+        print("Row: %s, Col: %s, X: %s, H: %s" % (n_row, n_column, x, y))
+        brick_image = BRICK_IMAGES[i % len(BRICK_IMAGES)]
+        brick = Actor(brick_image, (x, y))
+        bricks.append(brick)
 
 def draw():
     screen.clear()
@@ -47,7 +64,7 @@ def draw():
     ball_image.draw()
 
     for brick in bricks:
-        screen.draw.filled_rect(brick, brick.colour)
+        brick.draw()
 
 def on_mouse_move(pos):
     x, y = pos
